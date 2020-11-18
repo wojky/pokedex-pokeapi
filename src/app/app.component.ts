@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Pokemon } from 'pokeapi';
-import { PokemonService } from './pokemon.service';
+import { PokedexService } from './pokedex/pokedex.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -14,7 +14,7 @@ export class AppComponent {
   offset$ = this.pokemonService.offset$;
   isFetching$ = this.pokemonService.initialized$;
 
-  constructor(private readonly pokemonService: PokemonService) {}
+  constructor(private readonly pokemonService: PokedexService) {}
 
   selectPokemon(pokemon: Pokemon): void {
     this.pokemonService.selectPokemon(pokemon);

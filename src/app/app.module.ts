@@ -1,19 +1,24 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
-import { PokemonDetailsComponent } from './pokemon-details.component';
+import { RouterModule, Routes } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
 
-const ROUTES = [
+const ROUTES: Routes = [
   {
-    path: ':id',
-    component: PokemonDetailsComponent,
+    path: '',
+    redirectTo: 'pokedex',
+    pathMatch: 'full',
+  },
+  {
+    path: 'pokedex',
+    loadChildren: async () =>
+      (await import('./pokedex/pokedex.module')).PokedexModule,
   },
 ];
 @NgModule({
-  declarations: [AppComponent, PokemonDetailsComponent], // todo: move to pokemon module
+  declarations: [AppComponent],
   imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(ROUTES)], // extra todo: add translate module
   providers: [],
   bootstrap: [AppComponent],

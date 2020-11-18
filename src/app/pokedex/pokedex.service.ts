@@ -16,7 +16,7 @@ export interface PokedexState {
 @Injectable({
   providedIn: 'root',
 })
-export class PokemonService {
+export class PokedexService {
   public readonly maxOffset = 130;
 
   private readonly pokemonsPerPage = 20;
@@ -37,7 +37,7 @@ export class PokemonService {
         take(1)
       )
       .subscribe((event) => {
-        const param = +(event as NavigationEnd).url.substr(1);
+        const param = +(event as NavigationEnd).url.replace('/pokedex/', '');
 
         if (!param) {
           this.init();
@@ -81,7 +81,7 @@ export class PokemonService {
   }
 
   selectPokemon(pokemon: Pokemon): void {
-    this.router.navigate(['/', pokemon.id]);
+    this.router.navigate(['/pokedex', pokemon.id]);
     this.state.selectedPokemon$.next(pokemon);
   }
 
