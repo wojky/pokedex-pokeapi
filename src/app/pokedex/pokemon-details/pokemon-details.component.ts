@@ -18,6 +18,7 @@ export class PokemonDetailsComponent {
   pokemon$ = this.pokemonService.selectedPokemon$;
   isPokemonFrontView = true;
 
+  // todo: create custom colors for pokemon badges
   private colorsMap = new Map([
     ['grass', 'success'],
     ['fire', 'danger'],
