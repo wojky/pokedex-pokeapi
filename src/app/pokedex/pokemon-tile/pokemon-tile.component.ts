@@ -11,6 +11,7 @@ import { Pokemon } from 'pokeapi';
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-pokemon-tile',
   template: `
+    <!-- todo: add skeleton mock -->
     <img
       [src]="pokemon.sprites.front_default"
       class="cursor-pointer"
@@ -24,6 +25,11 @@ import { Pokemon } from 'pokeapi';
         display: flex;
         flex-direction: column;
         width: fit-content;
+      }
+
+      img {
+        width: 96px;
+        height: 96px;
       }
     `,
   ],

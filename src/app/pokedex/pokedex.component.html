@@ -1,6 +1,7 @@
 <style>
   div.flex-wrap {
     width: 500px;
+    height: 600px;
   }
 
   :host {
@@ -8,15 +9,25 @@
   }
 </style>
 
-<div class="d-flex flex-wrap">
-  <ng-container *ngIf="!(isFetching$ | async)">
-    <app-pokemon-tile
-      (choose)="selectPokemon($event)"
-      [pokemon]="pokemon"
-      *ngFor="let pokemon of pokemons$ | async"
-    >
-    </app-pokemon-tile>
-  </ng-container>
-  <app-navigation-bar class="mt-4"></app-navigation-bar>
+<div>
+  <div>
+    <div class="d-flex flex-wrap flex-grow-1">
+      <ng-container *ngIf="!(isFetching$ | async); else loader">
+        <app-pokemon-tile
+          (choose)="selectPokemon($event)"
+          [pokemon]="pokemon"
+          *ngFor="let pokemon of pokemons$ | async"
+        >
+        </app-pokemon-tile
+      ></ng-container>
+    </div>
+    <app-navigation-bar class="mt-4 align-item-end"></app-navigation-bar>
+  </div>
 </div>
 <router-outlet></router-outlet>
+
+<ng-template #loader>
+  <div class="d-flex justify-content-center align-items-center w-100">
+    <div class="spinner-border"></div>
+  </div>
+</ng-template>
