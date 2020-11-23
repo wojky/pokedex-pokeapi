@@ -1,6 +1,7 @@
 <ng-container *ngIf="pokemon$ | async as pokemon">
   <div class="d-flex flex-column px-5 border-left h-100">
     <img
+      class="mx-auto"
       #img
       [src]="
         isPokemonFrontView
@@ -22,10 +23,6 @@
         {{ type.type.name }}
       </span>
     </div>
-    <div class="mt-4">
-      <p *ngFor="let stat of pokemon.stats">
-        {{ stat.stat.name + " | " + stat.base_stat }}
-      </p>
-    </div>
+    <app-pokemon-stats-form [pokemon]="pokemon"></app-pokemon-stats-form>
   </div>
 </ng-container>
